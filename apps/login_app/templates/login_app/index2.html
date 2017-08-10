@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% load staticfiles %}
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'login_app/css/index.css' %}" media="screen" title="no title"  charset="utf-8">
+	<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script src="{% static 'login_app/js/index.js' %}"></script>
+	<title>Document</title>
+</head>
+<body align='center'>
+	<header>
+		<h1>Emily</h1>
+	</header>
+	<div id="wrapper" align='center'>
+		<div id="messages">
+			{%if messages%}
+				{%for message in messages%}
+					<p>{{message}}</p>
+				{%endfor%}
+			{%endif%}
+		</div>
+		<div id="register" align='center'>
+			<h1>Register</h1>
+			<form action='/login/register' method='post'>
+				{%csrf_token%}
+				<input type="text" name="first_name" placeholder="Enter your First Name." size=30><br>
+				<br>
+				<input type="text" name="last_name" placeholder="Enter your Last Name." size=30><br>
+				<br>
+				<input type="text" name="username" placeholder="Enter Username." size=30><br>
+				<br>
+				<input type="email" name="email" placeholder="Enter your Email." size=30><br>
+				<br>
+				<input type="password" name="password" placeholder="Enter your Password." size=30><br>
+				<br>
+				<input type="password" name="confirm_password" placeholder="Confirm Password." size=30><br>
+				<br>
+				<input type="radio" class = "requestradio" name="authorization" value="request"> Request Access
+	  		<input type="radio" class = "authcoderadio" name="authorization" value="verified"> Enter Auth Code<br>
+				<br>
+				<div class="authcode"></div>
+				<br>
+				<input type='submit' value='Register'>
+			</form>
+		</div>
+		<div id="login" align='center'>
+			<h1>Login</h1>
+			<form action='/login/login' method='post'>
+				{%csrf_token%}
+				<input type="text" name="username" placeholder="Enter your Username." size=30><br>
+				<br>
+				<input type="password" name="password" placeholder="Enter your Password." size=30><br>
+				<br>
+				<input type='submit' value='Login'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
